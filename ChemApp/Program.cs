@@ -38,8 +38,12 @@ namespace ChemApp
         static string CheckFlag()
         {
 
+            //check if there are remaining chemicals
+
             if (chemicals.Count < 1)
             {
+
+                //display a message and set flag to XXX
 
                 Console.WriteLine("All chemicals have been used, automatically exiting.");
                 flag = "XXX";
@@ -49,23 +53,54 @@ namespace ChemApp
 
             while (true)
             {
+                
+                
 
-
+                //ask user if they wish to continue
 
                 Console.WriteLine("Type XXX to exit or press enter to continue.");
 
                 flag = Console.ReadLine();
 
+                //convert the input to uppercase
+
                 flag = flag.ToUpper();
 
+                //check if flag equals to XXX or enter
+                Console.Clear();
                 if (flag.Equals("XXX") || flag.Equals(""))
                 {
+                    
+                    //return value
 
                     return flag;
 
                 }
 
-                Console.WriteLine("Error: Invalid Input.");
+                //set text color to dark blue and display an error
+
+                Console.ForegroundColor
+                        = ConsoleColor.DarkBlue;
+
+                Console.WriteLine("░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                    "█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░\n" +
+                    "░█░█░█░█░█░█░█░█░█░█░█ERROR 1█░█░█░█░█░█░█░█░█░█░█\n" +
+                    "█░█░█░█░█░█░The input you have entered█░█░█░█░█░█░\n" +
+                    "░█░█░█░█░█░█░█░█░█░was invalid.█░█░█░█░█░█░█░█░█░█\n" +
+                    "█░█░█░█░█░█░█░█Please enter either,░█░█░█░█░█░█░█░\n" +
+                    "░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                    $"█░█░█░█░█░█░█░█XXX or press enter.█░█░█░█░█░█░█░█░\n" +
+                    "░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                    "█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░\n\n");
+                
+                //revert text back to grey and display text indicating the wait time
+
+                    Console.ForegroundColor
+                = ConsoleColor.Gray;
+
+                Console.WriteLine($"The program will resume in: {TIME / 1000} seconds.");
+
+                System.Threading.Thread.Sleep(TIME);
 
             }
         }
@@ -77,6 +112,9 @@ namespace ChemApp
             {
                 try
                 {
+                    
+                    //display remaining chemicals using chemMenu
+
                     string chemMenu = "Please enter a number for the chemical you wish to test.\n";
 
                     for (int i = 0; i < chemicals.Count; i++)
@@ -88,6 +126,8 @@ namespace ChemApp
 
                     Console.WriteLine(chemMenu);
 
+                    //convert the input to an int
+
                     chemChoice = Convert.ToInt32(Console.ReadLine());
 
                     if (chemChoice > 0 && chemChoice < chemRemain)
@@ -96,14 +136,63 @@ namespace ChemApp
                         chemRemain = chemRemain - 1;
 
                         return chemChoice;
-                        
+
                     }
 
-                    Console.WriteLine("Error: Invalid Input.");
+                    //set text color to dark blue and display an error
+
+                    Console.ForegroundColor
+                        = ConsoleColor.DarkBlue;
+
+                    Console.WriteLine("░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                        "█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░\n" +
+                        "░█░█░█░█░█░█░█░█░█░█░█ERROR 2█░█░█░█░█░█░█░█░█░█░█\n" +
+                        "█░█░█░█░█░█The number you have inputted░█░█░█░█░█░\n" +
+                        "░█░█░█░█░█░█░█░█░█░was invalid.█░█░█░█░█░█░█░█░█░█\n" +
+                        "█░█░█░█░█░█░█░enter a number between█░█░█░█░█░█░█░\n" +
+                        "░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                        $"█░█░█░█░█░█░█░█░█░█░█░█1-{chemRemain}.░█░█░█░█░█░█░█░█░█░█░█░\n" +
+                        "░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                        "█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░\n\n");
+
+                    //revert text back to grey and display text indicating the wait time
+
+                    Console.ForegroundColor
+                    = ConsoleColor.Gray;
+
+                    Console.WriteLine($"The program will resume in: {TIME / 1000} seconds.");
+
+                    System.Threading.Thread.Sleep(TIME);
+
                 }
                 catch 
                 {
-                    Console.WriteLine("Error: Invalid Input.");
+
+                    //set text color to dark blue and display an error
+
+                    Console.ForegroundColor
+                          = ConsoleColor.DarkBlue;
+
+                    Console.WriteLine("░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                        "█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░\n" +
+                        "░█░█░█░█░█░█░█░█░█░█░█ERROR 3█░█░█░█░█░█░█░█░█░█░█\n" +
+                        "█░█░█░█░█░█The number you have inputted░█░█░█░█░█░\n" +
+                        "░█░█░█░█░█░█░█░█░█░was invalid.█░█░█░█░█░█░█░█░█░█\n" +
+                        "█░█░█░█░█░█░█░enter a number between█░█░█░█░█░█░█░\n" +
+                        "░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                        $"█░█░█░█░█░█░█░█░█░█░█░█1-{chemRemain}.░█░█░█░█░█░█░█░█░█░█░█░\n" +
+                        "░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█\n" +
+                        "█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░█░\n\n");
+
+                    //revert text back to grey and display text indicating the wait time
+
+                    Console.ForegroundColor
+                    = ConsoleColor.Gray;
+
+                    Console.WriteLine($"The program will resume in: {TIME / 1000} seconds.");
+
+                    System.Threading.Thread.Sleep(TIME);
+
                 }
 
             }
@@ -121,17 +210,21 @@ namespace ChemApp
 
             //ask user for the chemical they are testing
 
-
-
             CheckChem();
 
-            Console.WriteLine($"{chemicals[chemChoice - 1]}");
-            
+            Console.Clear();
+
             
 
             for (int i = 0; i < 5; i++)
             {
-                
+
+                Console.WriteLine("=========== Chemical Testing ===========\n");
+
+                Console.WriteLine("Please wait a moment while we test.");
+
+                Console.WriteLine($"Test number {i + 1}\n");
+
                 //generate live germs
 
                 Random ranGen = new Random();
@@ -144,15 +237,13 @@ namespace ChemApp
 
                 //wait for a set amount of time
 
-                Console.WriteLine("Please wait a moment while we test.");
-
                 System.Threading.Thread.Sleep(TIME);
 
                 int postGerms = preGerms / efficiency[chemChoice - 1];
 
                 //re-measure and display post germs
 
-                Console.WriteLine($"{postGerms}");
+                Console.WriteLine($"Remaining germs: {postGerms}/{preGerms}");
 
                 //determine efficiency rating
 
@@ -160,6 +251,11 @@ namespace ChemApp
 
                 effAv = effAv + effRating;
 
+                //wait so the user can read results of the test
+                
+                System.Threading.Thread.Sleep(TIME - 2000);
+
+                Console.Clear();
 
             }
 
@@ -168,6 +264,7 @@ namespace ChemApp
 
             effAv = effAv / 5;
 
+            Console.WriteLine("=========== Results ===========\n");
 
             if (effAv > topChem)
             {
@@ -187,10 +284,13 @@ namespace ChemApp
 
             //display average and chemical name
 
-            Console.WriteLine($"The average efficiency rating of {chemicals[chemChoice - 1]} is: {effAv}");
+            Console.WriteLine($"The average efficiency rating of {chemicals[chemChoice - 1]} is: {effAv}\n\n");
 
             
             chemicals.Remove(chemicals[chemChoice - 1]);
+
+            System.Threading.Thread.Sleep(TIME - 2000);
+
             
 
         }
@@ -198,7 +298,7 @@ namespace ChemApp
         static void Main(string[] args)
         {
 
-            //displays title and 
+            //displays title and some info
 
             Console.WriteLine(@" _____ _                       ___  " + "\n" +
             @"/  __ \ |                     / _ \" + "  \n" +
@@ -214,15 +314,19 @@ namespace ChemApp
             Console.WriteLine("Welcome to Chemical App. (Chem App for short) \n\nChem App will calculate the efficiency of a user selected chemical\n" +
                 "It will generate and display the germ sample before testing \nIt will then calculate and display the remaining germs and then repeat this 5 times\n" +
                 "Once it has finished testing it will calculate efficiency of the chemical \nThe user will then be asked if they want to continue or exit\n" +
-                "if they choose to continue the program will repeat the previous processes \nhowever if they choose to exit by entering XXX, the program will display the best and worst chemicals\n");
+                "if they choose to continue the program will repeat the previous processes \nhowever if they choose to exit by entering XXX, the program will display the best and worst chemicals\n\n"+
+                "Press enter to continue.\n");
 
+            Console.WriteLine("██████████████████████████████████████████████████");
 
+            Console.ReadLine();
+            Console.Clear();
             //loop ChemicalTest() until user enters "XXX"
 
             while (!flag.Equals("XXX"))
             {
 
-                
+                Console.WriteLine("=========== Chemical Selection ===========\n");
 
 
                 //run ChemicalTest()
@@ -238,10 +342,13 @@ namespace ChemApp
             }
 
 
-
+            Console.WriteLine("=========== Final Results ===========\n");
             //display topChem and botChem
 
-            Console.WriteLine($"The highest rating out of all the chemicals tested was: {topName} \nEfficiency: {topChem} \n\nThe lowest rating out of all the chemicals tested was: {botName} \nEfficiency: {botChem}");
+            Console.WriteLine($"The highest rating out of all the chemicals tested was: {topName} \nEfficiency: {topChem} \n\nThe lowest rating out of all the chemicals tested was: {botName} \nEfficiency: {botChem}\n" +
+                "Press enter to exit.");
+
+            Console.ReadLine();
 
         }
     }
